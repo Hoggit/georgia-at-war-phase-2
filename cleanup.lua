@@ -28,25 +28,6 @@ function cleanup()
         end
     end
 
-    --log("Starting Cleanup Naval Units")
-    -- Get alive naval targets and cleanup
-    --local targets = game_state["Theaters"]["Russian Theater"]["NavalStrike"]
-    --for group_name, target_table in pairs(targets) do
-    --    local target
-    --    if target_table['spawn_name'] == 'Oil Platform' then
-    --        target = STATIC:FindByName(group_name)
-    --    else
-    --        target = GROUP:FindByName(group_name)
-    --    end
-    --    if not target or not target:IsAlive() then
-            --for i,rearm_spawn in ipairs(rearm_spawns) do
-            --    rearm_spawn[1]:Spawn()
-            --end
-    --        MESSAGE:New("Naval target " .. target_table['callsign'] .. " destroyed!", 15):ToAll()
-    --        targets[group_name] = nil
-    --    end
-    --end
-
     log("Starting Cleanup C2")
     -- Get the number of C2s in existance, and cleanup the state for dead ones.
     local c2s = game_state["Theaters"]["Russian Theater"]["C2"]
