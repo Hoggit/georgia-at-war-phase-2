@@ -191,6 +191,9 @@ RussianTheaterMig312ShipSpawn:OnSpawnGroup(function(spawned_group)
     table.insert(enemy_interceptors, spawned_group:getName())
 end)
 
+VIPSpawns = { "VIPTransport" }
+VIPSpawnZones = { "VIPSpawn-Tuapse", "VIPSpawn-Sochi", "VIPSpawn-Gudauta", "VIPSpawn-Vody" }
+
 -- Strike Target Spawns
 RussianHeavyArtySpawn = { Spawner("ARTILLERY"), "ARTILLERY" }
 ArmorColumnSpawn = { Spawner("ARMOR COLUMN"), "ARMOR COLUMN" }
