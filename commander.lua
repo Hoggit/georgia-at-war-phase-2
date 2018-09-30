@@ -157,9 +157,9 @@ russian_commander = function()
     end
 
     --VIP Spawn Chance
-    local VIPChance = 1.0
+    local VIPChance = 0.1
     if math.random() >= (1 - VIPChance) then
-      log("Calling spawn vip")
+      log("Spawning russian VIP transport")
       SpawnVIPTransport()
     end
 
