@@ -193,10 +193,17 @@ end)
 
 VIPSpawns = { "VIPTransport" }
 
---VIPSpawnZones = { "VIPSpawn-Tuapse", "VIPSpawn-Sochi", "VIPSpawn-Gudauta", "VIPSpawn-Vody" }
+VIPSpawnZones = {
+  {"VIPSpawn-Tuapse", "Tuapse"},
+  {"VIPSpawn-Sochi", "Sochi"},
+  {"VIPSpawn-Gudauta", "Gudauta"},
+  {"VIPSpawn-Vody", "Vody"}
+}
 --For Testing purposes
-VIPSpawnZones = {"VIPSpawn-FarTest"}
-VIPSignal = StaticSpawner("VIPFire", 1, { {0,0} })
+--VIPSpawnZones = {{"VIPSpawn-FarTest", "FarTest"}}
+-- Doesn't work yet.
+--VIPSignal = StaticSpawner("VIPFire", 1, { {0,0} })
+VIPDropoffZones = {"VIPDropOff-Maykop"}
 
 -- Strike Target Spawns
 RussianHeavyArtySpawn = { Spawner("ARTILLERY"), "ARTILLERY" }
@@ -266,6 +273,19 @@ SpawnStaticDefense = function(group_name, position)
     mist.dynAdd(groupData)
 end
 
+StrikeTargetSpawns = {
+  AmmoDumpSpawn,
+  CommsArraySpawn,
+  PowerPlantSpawn
+}
+
+SpawnStrikeTarget = function()
+  local zone_index = math.random(10)
+  local zone = "NorthStatic" .. zone_index
+  local spawn = randomFromList(StrikeTargetSpawns)
+  local vec2 = mist.getRandomPointInZone(zone)
+  return spawn:Spawn({vec2.x, vec2.y})
+end
 -- Naval Strike target Spawns
 --PlatformGroupSpawn = {SPAWNSTATIC:NewFromStatic("Oil Platform", country.id.RUSSIA), "Oil Platform"}
 

@@ -205,13 +205,8 @@ else
         RussianTheaterC2Spawn[1]:SpawnInZone(zone .. zone_index)
     end
 
-    for i=1, 10 do
-        local zone_index = math.random(10)
-        local zone = "NorthStatic" .. zone_index
-        local StaticSpawns = {AmmoDumpSpawn, PowerPlantSpawn, CommsArraySpawn}
-        local spawn_index = math.random(3)
-        local vec2 = mist.getRandomPointInZone(zone)
-        local id = StaticSpawns[spawn_index]:Spawn({vec2.x, vec2.y})
+    for i=1, 2 do
+        SpawnStrikeTarget()
     end
 
     AirbaseSpawns["Nalchik"][1]:Spawn()

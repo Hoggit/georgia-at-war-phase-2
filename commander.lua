@@ -160,7 +160,7 @@ russian_commander = function()
     local VIPChance = 1.0
     if math.random() >= (1 - VIPChance) then
       log("Calling spawn vip")
-      SpawnVIP()
+      SpawnVIPTransport()
     end
 
 end

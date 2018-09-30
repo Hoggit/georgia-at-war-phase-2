@@ -164,9 +164,10 @@ GroupCommand = function(group, text, parent, handler)
   end
 end
 
-MessageToGroup = function(groupId, text, displayTime)
+MessageToGroup = function(groupId, text, displayTime, clear)
   if not displayTime then displayTime = 10 end
-  trigger.action.outTextForGroup( groupId, text, displayTime )
+  if clear == nil then clear = false end
+  trigger.action.outTextForGroup( groupId, text, displayTime, clear)
 end
 
 MessageToAll = function( text, displayTime )
