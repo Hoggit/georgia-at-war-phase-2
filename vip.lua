@@ -59,7 +59,9 @@ VIPDeathHandler = function(event)
   if listContains(GAW.VIP.activeVIPTransports, grpName) then
     if event.id == world.event.S_EVENT_CRASH then
       local pt = event.initiator:getPoint()
-      SpawnVIPForPickup(pt)
+      local lat,long = coord.LOtoLL(pt)
+      SpawnVIPForPickup(pt, true)
+      MessageToAll("Russian VIP transport has been downed! Intelligence can be found at: \n" .. mist.tostringLL(lat,long,6), 60)
     else
       MessageToAll("Russian VIP has successfully evacuated the AO!")
       log("Russian VIP escaped on the transport to Beslan.")
@@ -69,12 +71,12 @@ VIPDeathHandler = function(event)
   end
 end
 
-SpawnVIPForPickup = function(point)
-  local lat,long = coord.LOtoLL(point)
-  MessageToAll("Russian VIP transport has been downed! Intelligence can be found at: \n" .. mist.tostringLL(lat,long,6), 60)
+SpawnVIPForPickup = function(point, remove)
   trigger.action.smoke(point, trigger.smokeColor.Red)
   table.insert(GAW.VIP.activeVIPs, point)
-  mist.scheduleFunction(RemoveVIPSpawn, {point}, timer.getTime() + GAW.VIP.activeTime)
+  if remove ~= nil and not remove then
+    mist.scheduleFunction(RemoveVIPSpawn, {point}, timer.getTime() + GAW.VIP.activeTime)
+  end
 end
 
 RemoveVIPSpawn = function(point)
