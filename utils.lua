@@ -34,12 +34,10 @@ function listContains(list, elem)
   return false
 end
 
-table.filter = function(t, filterIter)
-  local out = {}
-
-  for k, v in pairs(t) do
-    if filterIter(v, k, t) then out[k] = v end
+tableIndex = function(tbl, val)
+  for i,v in pairs(tbl) do
+    if val == v then
+      return i
+    end
   end
-
-  return out
 end

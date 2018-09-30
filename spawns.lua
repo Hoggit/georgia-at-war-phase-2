@@ -192,7 +192,11 @@ RussianTheaterMig312ShipSpawn:OnSpawnGroup(function(spawned_group)
 end)
 
 VIPSpawns = { "VIPTransport" }
-VIPSpawnZones = { "VIPSpawn-Tuapse", "VIPSpawn-Sochi", "VIPSpawn-Gudauta", "VIPSpawn-Vody" }
+
+--VIPSpawnZones = { "VIPSpawn-Tuapse", "VIPSpawn-Sochi", "VIPSpawn-Gudauta", "VIPSpawn-Vody" }
+--For Testing purposes
+VIPSpawnZones = {"VIPSpawn-FarTest"}
+VIPSignal = StaticSpawner("VIPFire", 1, { {0,0} })
 
 -- Strike Target Spawns
 RussianHeavyArtySpawn = { Spawner("ARTILLERY"), "ARTILLERY" }

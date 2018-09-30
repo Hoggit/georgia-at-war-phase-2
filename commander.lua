@@ -155,6 +155,14 @@ russian_commander = function()
             end
         end
     end
+
+    --VIP Spawn Chance
+    local VIPChance = 1.0
+    if math.random() >= (1 - VIPChance) then
+      log("Calling spawn vip")
+      SpawnVIP()
+    end
+
 end
 
 log("commander.lua complete")

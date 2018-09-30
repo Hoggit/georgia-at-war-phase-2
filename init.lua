@@ -288,5 +288,5 @@ end, {}, timer.getTime() + 10)
 mist.scheduleFunction(function() RussianTheaterCASSpawn:Spawn(); RussianTheaterSOUTHCASSpawn:Spawn() end, {}, timer.getTime() + 10, 3600)
 
 -- Kick off the commanders
-mist.scheduleFunction(russian_commander, {}, timer.getTime() + 10, 600)
+mist.scheduleFunction(russian_commander, {}, timer.getTime() + 10, 60)
 log("init.lua complete")
