@@ -23,3 +23,23 @@ function randomFromList(list)
   local idx = math.random(1, #list)
   return list[idx]
 end
+
+function listContains(list, elem)
+  for _, value in ipairs(list) do
+    if value == elem then
+        return true
+    end
+  end
+
+  return false
+end
+
+table.filter = function(t, filterIter)
+  local out = {}
+
+  for k, v in pairs(t) do
+    if filterIter(v, k, t) then out[k] = v end
+  end
+
+  return out
+end
