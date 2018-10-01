@@ -32,6 +32,7 @@ DropVIP = function(grp)
       GAW.VIP.carriedVIPs[grp:getName()] = nil
       SpawnStrikeTarget()
       MessageToAll("A strike target has been located based off intelligence captured from Russia. Check Mission Status for details")
+      log("VIP intel has revealed a strike target")
     end
   else
     MessageToGroup(grp:getID(), "You're not carrying any VIPs!", 3)
@@ -45,6 +46,7 @@ SpawnVIPTransport = function()
   local zone = spawnZone[1]
   local spawnName = spawnZone[2]
   MessageToAll("A VIP carrying classified intelligence has been spotted trying to get to Beslan from " .. spawnName)
+  log("VIP spawned")
   local spawnedGroup = spawner:SpawnInZone(zone)
   local path = mist.getGroupRoute(vipGrp, true)
   mist.scheduleFunction(mist.goRoute, {spawnedGroup, path}, timer.getTime() + 5)
@@ -62,6 +64,7 @@ VIPDeathHandler = function(event)
       local lat,long = coord.LOtoLL(pt)
       SpawnVIPForPickup(pt, true)
       MessageToAll("Russian VIP transport has been downed! Intelligence can be found at: \n" .. mist.tostringLL(lat,long,6), 60)
+      log("Russian VIP has been shot down")
     else
       MessageToAll("Russian VIP has successfully evacuated the AO!")
       log("Russian VIP escaped on the transport to Beslan.")
@@ -84,6 +87,7 @@ RemoveVIPSpawn = function(point)
   table.remove(GAW.VIP.activeVIPs, tableIndex(GAW.VIP.activeVIPs, point))
   local lat,long = coord.LOtoLL(point)
   MessageToAll("Russian VIP at " .. mist.tostringLL(lat,long,6) .. " has escaped.")
+  log("Russian VIP escaped after waiting for an hour")
 end
 
 mist.addEventHandler(VIPDeathHandler)
@@ -123,6 +127,7 @@ CheckVIPPickup = function()
               --GAW.VIP.activeVIPs[i] = nil
               table.remove(GAW.VIP.activeVIPs, i)
               MessageToGroup(unit:getGroup():getID(), "Loaded VIP!", 3)
+              log("VIP loaded into " .. unit:getGroup())
             end
           end
         end
