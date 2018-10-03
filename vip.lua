@@ -55,6 +55,7 @@ end
 
 VIPDeathHandler = function(event)
   if event.id ~= world.event.S_EVENT_CRASH and event.id ~= world.event.S_EVENT_LAND then return end
+  if not event.initiator then return end
   if not event.initiator.getGroup then return end
   local grp = event.initiator:getGroup()
   local grpName = grp:getName()
@@ -148,6 +149,7 @@ mist.scheduleFunction(RefreshVIPSmoke, nil, timer.getTime() + 300)
 
 PlayerVIPTransportDeathHandler = function(event)
   if event.id ~= world.event.S_EVENT_CRASH and event.id ~= world.event.S_EVENT_PLAYER_LEAVE_UNIT then return end
+  if not event.initiator then return end
   if not event.initiator.getGroup then return end
   local grp = event.initiator:getGroup()
   if GAW.VIP.carriedVIPs[grp:getName()] ~= nil then
