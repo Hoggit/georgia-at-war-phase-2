@@ -62,10 +62,13 @@ function cleanup()
     log("Starting Theater Objectives Cleanup")
     local theaterObjectives = game_state["Theaters"]["Russian Theater"]["TheaterObjectives"]
     for obj_name, obj in pairs(theaterObjectives) do
+      log("Checking " .. obj_name .. " for removal")
       if not isAlive(obj.groupName) then
         game_state["Theaters"]["Russian Theater"]["TheaterObjectives"][obj_name] = nil
         MessageToAll(obj_name .. " has been destroyed!")
         log("Theater objective " .. obj_name .. " has been removed from the state")
+      else
+        log("Objective " .. obj_name .. " is still alive with " .. Group.getByName(obj.groupName):getSize() .. " units")
       end
     end
     log("Done Clean script")

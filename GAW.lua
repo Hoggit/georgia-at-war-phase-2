@@ -79,13 +79,13 @@ TheaterObjectiveSpawner = function(objectiveName, groupName)
     Spawn = function(self)
       local spawned = mist.cloneGroup(groupName)
       if spawned then
-        log("Spawned " .. groupName .. "!")
+        log("Spawned " .. spawned.name.. "!")
       else
         log("Did not spawn ".. groupName .. "!")
         return
       end
       local data = {
-        groupName = groupName,
+        groupName = spawned.name,
         objectiveName = objectiveName
       }
       game_state["Theaters"]["Russian Theater"]["TheaterObjectives"][objectiveName] = data

@@ -208,7 +208,9 @@ VIPDropoffZones = {"VIPDropOff-Maykop"}
 --Theater Objectives. Must be spawned once, and only where in the ME has them.
 TuapseRefinery = TheaterObjectiveSpawner("Tuapse Refinery", "TuapseRefineryDef")
 
-TheaterObjectives = { TuapseRefinery }
+TheaterObjectives = {}
+TheaterObjectives["Tuapse Refinery"] = TuapseRefinery
+
 
 -- Strike Target Spawns
 RussianHeavyArtySpawn = { Spawner("ARTILLERY"), "ARTILLERY" }

@@ -131,6 +131,16 @@ if statefile then
 
     trigger.action.outText("Finished processing BAI", 10)
 
+    for name, data in pairs(saved_game_state["Theaters"]["Russian Theater"]["TheaterObjectives"]) do
+      local spawner = TheaterObjectives[name]
+      if not spawner then
+        log("Found TheaterObjective " .. name .. " but no spawner for it!")
+      else
+        log(" Spawning TheaterObjective " .. name)
+        spawner:Spawn()
+      end
+    end
+
     for idx, data in ipairs(saved_game_state["Theaters"]["Russian Theater"]["CTLD_ASSETS"]) do
         if data.name == 'avenger' then
             avengerspawn:SpawnAtPoint({
