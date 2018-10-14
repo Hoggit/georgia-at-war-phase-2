@@ -153,13 +153,6 @@ buildMenu = function(Group)
     end)
 
 
-    --DELETE ME
-    CoalitionCommand(coalition.side.BLUE, "Kill Tuapse", nil, function()
-      local tuapse_ref = game_state["Theaters"]["Russian Theater"]["TheaterObjectives"]["Tuapse Refinery"].groupName
-      Group.getByName(tuapse_ref):destroy()
-    end)
-    --
-    --DELETE ME
     --[[GroupCommand(Group:getID(), "Check In On-Call CAS", MissionMenu, function()
         if #oncall_cas > 2 then
             MessageToGroup(Group:getID(), "No more on call CAS taskings are available, please try again when players currently running CAS are finished.", 30)
