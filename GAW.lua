@@ -391,15 +391,13 @@ mist.addEventHandler(securityForcesLanding)
 
 function baseCaptured(event)
   if event.id == world.event.S_EVENT_BASE_CAPTURED then
+    log("baseCaptured")
     local abname = event.place:getName()
     local coalition = event.place:getCoalition()
-    local capString
     local flagval
     if coalition == 1 then
-      capString = "Russian forces"
       flagval = 100
     elseif coalition == 2 then
-      capString = "Coalition forces"
       flagval = 0
     end
 
