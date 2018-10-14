@@ -267,7 +267,7 @@ function handleDeaths(event)
     if not event.initiator.getGroup then return end
     local grp = event.initiator:getGroup()
     if not grp then return end
-    log("Death for grp " .. grp.name)
+    log("Death for grp " .. grp:getName())
     if checkedSams[grp:getName()] then
       local radars = 0
       local launchers = 0
