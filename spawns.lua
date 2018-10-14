@@ -205,6 +205,11 @@ VIPSpawnZones = {
 --VIPSignal = StaticSpawner("VIPFire", 1, { {0,0} })
 VIPDropoffZones = {"VIPDropOff-Maykop"}
 
+--Theater Objectives. Must be spawned once, and only where in the ME has them.
+TuapseRefinery = TheaterObjectiveSpawner("Tuapse Refinery", "TuapseRefineryDef")
+
+TheaterObjectives = { TuapseRefinery }
+
 -- Strike Target Spawns
 RussianHeavyArtySpawn = { Spawner("ARTILLERY"), "ARTILLERY" }
 ArmorColumnSpawn = { Spawner("ARMOR COLUMN"), "ARMOR COLUMN" }

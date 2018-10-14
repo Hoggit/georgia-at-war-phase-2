@@ -215,6 +215,10 @@ else
     FARPCHARLIEDEF:Spawn()
     FARPDELTADEF:Spawn()
 
+    for _,spawn in pairs(TheaterObjectives) do
+      spawn:Spawn()
+    end
+
     -- Disable slots
     trigger.action.setUserFlag("Novoro Huey 1",100)
     trigger.action.setUserFlag("Novoro Huey 2",100)

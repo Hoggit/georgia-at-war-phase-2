@@ -21,6 +21,7 @@ game_state = {
             ["EWR"] = {},
             ["CASTargets"] = {},
             ["StrikeTargets"] = {},
+            ["TheaterObjectives"] = {},
             ["InterceptTargets"] = {},
             ["OpforCAS"] = {},
             ["CAP"] = {},

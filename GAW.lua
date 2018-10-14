@@ -74,6 +74,26 @@ Spawner = function(grpName)
   }
 end
 
+TheaterObjectiveSpawner = function(objectiveName, groupName)
+  return {
+    Spawn = function(self)
+      local spawned = mist.cloneGroup(groupName)
+      if spawned then
+        log("Spawned " .. groupName .. "!")
+      else
+        log("Did not spawn ".. groupName .. "!")
+        return
+      end
+      local data = {
+        groupName = groupName,
+        objectiveName = objectiveName
+      }
+      game_state["Theaters"]["Russian Theater"]["TheaterObjectives"][objectiveName] = data
+      return grpName
+    end
+  }
+end
+
 StaticSpawner = function(groupName, numberInGroup, groupOffsets)
   local CallBack = {}
   return {
@@ -245,6 +265,7 @@ function handleDeaths(event)
   if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_ENGINE_SHUTDOWN then
     if not event.initiator.getGroup then return end
     local grp = event.initiator:getGroup()
+    if not grp then return end
     if checkedSams[grp:getName()] then
       local radars = 0
       local launchers = 0
