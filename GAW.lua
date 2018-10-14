@@ -263,12 +263,15 @@ end
 function handleDeaths(event)
   -- The scheduledSpawn stuff only works for groups with a single unit atm.
   if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_ENGINE_SHUTDOWN then
+    log("Death event handler")
     if not event.initiator.getGroup then return end
     local grp = event.initiator:getGroup()
     if not grp then return end
+    log("Death for grp " .. grp.name)
     if checkedSams[grp:getName()] then
       local radars = 0
       local launchers = 0
+      log("Group death is a sam group. Iterating units")
       for i, unit in pairs(grp:getUnits()) do
         local type_name = unit:getTypeName()
         if type_name == "Kub 2P25 ln" then launchers = launchers + 1 end
@@ -280,7 +283,9 @@ function handleDeaths(event)
         if type_name == "S-300PS 5P85D ln" then launchers = launchers + 1 end
       end
 
+      log("Done iterating sam units")
       if radars == 0 or launchers == 0 then
+        log("SAM considered dead. removing from state")
         game_state['Theaters']['Russian Theater']['StrategicSAM'][grp:GetName()] = nil
         checkedSams[grp:getName()] = nil
         trigger.action.outText("SAM " .. callsign .. " has been destroyed!", 15)
@@ -288,12 +293,15 @@ function handleDeaths(event)
     end
 
     if checkedC2s[grp:getName()] then
+      log("Group death is a c2 group")
       local cps = 0
+      log("Iterating c2 units")
       for i, unit in pairs(grp:getUnits()) do
         if unit:getTypeName() == "SKP-11" then cps = cps + 1 end
       end
 
       if cps == 0 then
+        log("C2 group considered dead. removing from state")
         game_state['Theaters']['Russian Theater']['C2'][grp:GetName()] = nil
         checkedC2s[grp:getName()] = nil
         trigger.action.outText("C2 " .. callsign .. " has been destroyed!", 15)
@@ -301,12 +309,14 @@ function handleDeaths(event)
     end
 
     if checkedEWRs[grp:getName()] then
+      log("Group death is EWR. Iterating units.")
       local ewrs = 0
       for i, unit in pairs(grp:getUnits()) do
         if unit:getTypeName() == "1L13 EWR" then ewrs = ewrs + 1 end
       end
 
       if ewrs == 0 then
+        log("EWR considered dead. removing from state")
         game_state['Theaters']['Russian Theater']['EWR'][grp:GetName()] = nil
         checkedEWRs[grp:getName()] = nil
         trigger.action.outText("EWR " .. callsign .. " has been destroyed!", 15)
@@ -314,6 +324,7 @@ function handleDeaths(event)
     end
 
     if scheduledSpawns[event.initiator:getName()] then
+      log("Dead group was a scheduledSpawn.")
       local spawner = scheduledSpawns[event.initiator:getName()][1]
       local stimer = scheduledSpawns[event.initiator:getName()][2]
       scheduledSpawns[event.initiator:getName()] = nil
@@ -331,6 +342,7 @@ mist.addEventHandler(handleDeaths)
 
 function securityForcesLanding(event)
   if event.id == world.event.S_EVENT_LAND then
+    log("Land Event!")
     local xport = activeBlueXports[event.initiator:getGroup():getName()]
     if xport then
       local abname = xport[2]
