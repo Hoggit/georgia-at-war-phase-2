@@ -67,9 +67,9 @@ if statefile then
             flagval = 100
         elseif coalition == 2 then
             AirfieldDefense:SpawnAtPoint(apV3)
-            apV3.x = apV3.x - 100
-            apV3.z = apV3.z - 100
-            FSW:SpawnAtPoint({x=apV3.x, y=apV3.z})
+            apV3.x = apV3.x + 50
+            apV3.z = apV3.z - 50
+            FSW:SpawnAtPoint({x=apV3.x, y=apV3.z}, true)
             flagval = 0
         end
 

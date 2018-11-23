@@ -39,7 +39,7 @@ Spawner = function(grpName)
       end
       return added_grp
     end,
-    SpawnAtPoint = function(self, point)
+    SpawnAtPoint = function(self, point, noDisperse)
       local vars = {
         groupName = grpName,
         point = point,
@@ -47,6 +47,10 @@ Spawner = function(grpName)
         disperse = true,
         maxDisp = 1000
       }
+
+      if noDisperse then
+        vars.disperse = false
+      end
 
       local new_group = mist.teleportToPoint(vars)
       if new_group then
