@@ -73,6 +73,10 @@ if statefile then
             flagval = 0
         end
 
+        if ab_logi_slots[name] then
+            activateLogi(ab_logi_slots[name])
+        end
+            
         for i,grp in ipairs(abslots[name]) do
             trigger.action.setUserFlag(grp, flagval)
         end
