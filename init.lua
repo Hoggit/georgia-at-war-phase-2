@@ -186,7 +186,7 @@ if statefile then
             })
             local _code = table.remove(ctld.jtacGeneratedLaserCodes, 1)
             table.insert(ctld.jtacGeneratedLaserCodes, _code)
-            ctld.JTACAutoLase(_spawnedGroup, _code)
+            ctld.JTACAutoLase(_spawnedGroup:getName(), _code)
         end
     end
 

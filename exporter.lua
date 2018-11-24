@@ -38,7 +38,7 @@ ctld.addCallback(function(_args)
             name = 'gepard'
         elseif string.match(groupname, "MLRS") then
             name = 'mlrs'
-        elseif string.match(groupname, "JTAC") then
+        elseif string.match(groupname, "Hummer") then
             name = 'jtac'
         end
 
