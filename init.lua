@@ -71,12 +71,12 @@ if statefile then
             apV3.z = apV3.z - 50
             FSW:SpawnAtPoint({x=apV3.x, y=apV3.z}, true)
             flagval = 0
+
+            if ab_logi_slots[name] then
+                activateLogi(ab_logi_slots[name])
+            end
         end
 
-        if ab_logi_slots[name] then
-            activateLogi(ab_logi_slots[name])
-        end
-            
         for i,grp in ipairs(abslots[name]) do
             trigger.action.setUserFlag(grp, flagval)
         end
