@@ -27,8 +27,10 @@ if statefile then
         game_state["Theaters"]["Russian Theater"]["Airfields"][name] = coalition
 
         if coalition == 1 then
-            AirbaseSpawns[name][3]:Spawn()
-            flagval = 100
+            if AirbaseSpawns[name] then
+                AirbaseSpawns[name][3]:Spawn()
+                flagval = 100
+            end
         elseif coalition == 2 then
             AirfieldDefense:SpawnAtPoint({
                 x = posx,
