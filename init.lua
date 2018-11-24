@@ -273,6 +273,7 @@ else
     trigger.action.setUserFlag("FARP Alpha UH-1H 2",100)
 
 
+    trigger.action.setUserFlag("FARP Bravo Ka50",100)
     trigger.action.setUserFlag("FARP Bravo Mi8 1",100)
     trigger.action.setUserFlag("FARP Bravo Mi8 2",100)
     trigger.action.setUserFlag("FARP Bravo UH-1H 1",100)
@@ -285,6 +286,7 @@ else
     trigger.action.setUserFlag("FARP Charlie UH-1H 2",100)
 
 
+    trigger.action.setUserFlag("FARP Delta Ka50",100)
     trigger.action.setUserFlag("FARP Delta Mi8 1",100)
     trigger.action.setUserFlag("FARP Delta Mi8 2",100)
     trigger.action.setUserFlag("FARP Delta UH-1H 1",100)
