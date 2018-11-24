@@ -224,7 +224,7 @@ else
         RussianTheaterC2Spawn[1]:SpawnInZone(zone .. zone_index)
     end
 
-    for i=1, 2 do
+    for i=1, 5 do
         SpawnStrikeTarget()
     end
 
