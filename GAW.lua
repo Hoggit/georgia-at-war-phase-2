@@ -419,6 +419,21 @@ function baseCaptured(event)
       game_state["Theaters"]["Russian Theater"]['Airfields'][abname] = coalition
     end
 
+    if abname == 'Sukhumi-Babushara' or abname == 'Beslan' then
+      game_state["Theaters"]["Russian Theater"]['Primary'][abname] = coalition
+    end
+
+    -- disable Sukhumi airport red CAP spawn if it is captured by blufor
+    if abname == 'Sukhumi-Babushara' then
+      if coalition == 2 then
+        poopcapsground = {RussianTheaterF5SpawnGROUND}
+        goodcapsground = {RussianTheaterJ11SpawnGROUND}
+      else
+        poopcapsground = {RussianTheaterMig212ShipSpawnGROUND, RussianTheaterF5SpawnGROUND}
+        goodcapsground = {RussianTheaterMig292ShipSpawnGROUND, RussianTheaterSu272sShipSpawnGROUND, RussianTheaterJ11SpawnGROUND}
+      end
+    end
+
   end
 end
 

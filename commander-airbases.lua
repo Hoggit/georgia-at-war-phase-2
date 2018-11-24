@@ -32,6 +32,10 @@ GudautaTransportSpawn = Spawner("GudautaTransport")
 GudautaHeloSpawn = Spawner("GudautaHeloTransport")
 GudautaDefSpawn = Spawner("GudautaDefense")
 
+SukhumiTransportSpawn = Spawner("SukhumiTransport")
+SukhumiHeloSpawn = Spawner("SukhumiHeloTransport")
+SukhumiDefSpawn = Spawner("SukhumiDefense")
+
 RussianTheaterAirfieldDefSpawn = Spawner("Russia-Airfield-Def")
 
 AttackableAirbases = function(airbaseList)
@@ -82,7 +86,8 @@ AirbaseSpawns = {
     ["Nalchik"]={NalchikTransportSpawn, NalchikHeloSpawn, NalchikDefSpawn},
     ["Mineralnye Vody"]={VodyTransportSpawn, VodyHeloSpawn, VodyDefSpawn},
     ["Gudauta"]={GudautaTransportSpawn, GudautaHeloSpawn, GudautaDefSpawn},
-    ["Sochi-Adler"]={SochiTransportSpawn, SochiHeloSpawn, SochiDefSpawn}
+    ["Sochi-Adler"]={SochiTransportSpawn, SochiHeloSpawn, SochiDefSpawn},
+    ["Sukhumi-Babushara"]={SukhumiTransportSpawn, SukhumiHeloSpawn, SukhumiDefSpawn}
 }
 
 function transportLand(event)

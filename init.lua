@@ -238,6 +238,9 @@ else
       spawn:Spawn()
     end
 
+    -- Make Sukhumi Red 
+    AirbaseSpawns['Sukhumi-Babushara'][3]:Spawn()
+
     -- Disable slots
     trigger.action.setUserFlag("Sochi Mi8 1",100)
     trigger.action.setUserFlag("Sochi Mi8 2",100)
