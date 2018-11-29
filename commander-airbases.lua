@@ -9,6 +9,7 @@ Airbases = {
     "Mineralnye Vody",
     "Nalchik",
     "Mozdok",
+    "Sukhumi-Babushara"
 }
 
 -- Russian IL-76MD spawns to capture airfields

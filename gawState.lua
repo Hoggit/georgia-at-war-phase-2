@@ -11,6 +11,7 @@ game_state = {
                 ["Mineralnye Vody"] = Airbase.getByName("Mineralnye Vody"):getCoalition(),
                 ["Nalchik"] = Airbase.getByName("Nalchik"):getCoalition(),
                 ["Mozdok"] = Airbase.getByName("Mozdok"):getCoalition(),
+                ["Sukhumi-Babushara"] = Airbase.getByName("Sukhumi-Babushara"):getCoalition(),
             },
             ["Primary"] = {
                 ["Beslan"] = false,
