@@ -190,6 +190,17 @@ if statefile then
         end
     end
 
+    local destroyedStatics = saved_game_state["Theaters"]["Russian Theater"]["DestroyedStatics"]
+    if destroyedStatics ~= nil then
+        for k, v in pairs(destroyedStatics) do
+            local obj = StaticObject.getByName(k)
+            if obj ~= nil then
+                StaticObject.destroy(obj)
+            end
+        end
+        game_state["Theaters"]["Russian Theater"]["DestroyedStatics"] = saved_game_state["Theaters"]["Russian Theater"]["DestroyedStatics"]
+    end
+
     local CTLDstate = saved_game_state["Theaters"]["Russian Theater"]["Hawks"]
     if CTLDstate ~= nil then
         for k,v in pairs(CTLDstate) do

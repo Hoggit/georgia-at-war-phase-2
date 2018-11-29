@@ -270,7 +270,18 @@ function handleDeaths(event)
   -- The scheduledSpawn stuff only works for groups with a single unit atm.
   if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_ENGINE_SHUTDOWN then
     log("Death event handler")
-    if not event.initiator.getGroup then return end
+    if not event.initiator.getGroup then
+      if event.initiator.getName then
+        local sobname = event.initiator.getName(event.initiator)
+        log('Static object destroyed: ' .. sobname)
+        for k, v in ipairs(DestructibleStatics) do
+          if string.match(sobname, v) then
+            log('adding ' .. sobname .. ' to list of destroyed static objects')
+            game_state['Theaters']['Russian Theater']['DestroyedStatics'][sobname] = true
+          end
+        end
+      end
+    end
     local grp = event.initiator:getGroup()
     if not grp then return end
     log("Death for grp " .. grp:getName())

@@ -24,6 +24,7 @@ game_state = {
             ["StrikeTargets"] = {},
             ["TheaterObjectives"] = {},
             ["InterceptTargets"] = {},
+            ["DestroyedStatics"] = {},
             ["OpforCAS"] = {},
             ["CAP"] = {},
             ["BAI"] = {},

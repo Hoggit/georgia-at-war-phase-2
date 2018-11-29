@@ -206,9 +206,14 @@ VIPDropoffZones = {"VIPDropOff-Maykop"}
 
 --Theater Objectives. Must be spawned once, and only where in the ME has them.
 TuapseRefinery = TheaterObjectiveSpawner("Tuapse Refinery", "TuapseRefineryDef")
+ChemSite = TheaterObjectiveSpawner("Chemical Factory", "CHEM SITE VEHICLES")
+AmmoDump = TheaterObjectiveSpawner("Chemical Factory", "AMMO DUMP GROUND FORCES")
+
 
 TheaterObjectives = {}
 TheaterObjectives["Tuapse Refinery"] = TuapseRefinery
+TheaterObjectives["Chemical Factory"] = ChemSite
+TheaterObjectives["Ammunitions Depot"] = AmmoDump
 
 
 -- Strike Target Spawns
@@ -338,6 +343,14 @@ end
 --        AddConvoy(SpawnedGroup, spawn_tbl[2],cs)
 --    end)
 --end
+
+DestructibleStatics = {
+    'TUAPSE',
+    'CHEM SITE',
+    'AMMO DUMP'
+}
+DestroyedStatics = {}
+
 
 RussianTheaterAWACSSpawn:OnSpawnGroup(function(SpawnedGroup)
     local callsign = "Overseer"
