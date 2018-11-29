@@ -281,6 +281,8 @@ function handleDeaths(event)
           end
         end
       end
+      --We're done.
+      return
     end
     local grp = event.initiator:getGroup()
     if not grp then return end
