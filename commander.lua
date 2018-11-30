@@ -122,23 +122,23 @@ russian_commander = function()
             mist.scheduleFunction(function()
                 if math.random() < adcap_chance then
                     -- Spawn fancy planes, 70% chance they come from airbase, otherwise they come from "off theater"
-                    local capspawn = goodcaps[math.random(#goodcaps)]
                     if math.random() < p_spawn_airbase_cap then
-                        capspawn = goodcapsground[math.random(#goodcaps)]
+                        local capspawn = goodcapsground[math.random(#goodcapsground)]
                         capspawn:Spawn()
                         log("The Russian commander is getting a fancy plane from his local airbase")
                     else
+                        local capspawn = goodcaps[math.random(#goodcaps)]
                         capspawn:Spawn()
                         log("The Russian commander is getting a fancy plane from a southern theater.")
                     end
                 else
                     -- Spawn same ol crap
-                    local capspawn = poopcaps[math.random(#poopcaps)]
                     if math.random() < p_spawn_airbase_cap then
-                        capspawn = poopcapsground[math.random(#poopcaps)]
+                        local capspawn = poopcapsground[math.random(#poopcapsground)]
                         capspawn:Spawn()
                         log("The Russian commander is getting a poopy plane from his local airbase")
                     else
+                        local capspawn = poopcaps[math.random(#poopcaps)]
                         capspawn:Spawn()
                         log("The Russian commander is getting a poopy plane from a southern theater, thanks Ivan you piece of...")
                     end
