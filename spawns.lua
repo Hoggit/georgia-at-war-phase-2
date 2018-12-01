@@ -5,7 +5,7 @@ objective_names = {
     --Patreon
     "Eiger", "Snax", "Asteroid", "Sephton", "Blacklist", "Boot", "Maria",
     "Cheeki Breeki", "Husky", "Carrack", "Vegabond", "Jar Jar", "Plowshare", "Primrose", "Cracow",
-    "Chaser", "Rockstar", "Rintaro", "Schwifty", "Tombstone", "Zip", "Foxhound"
+    "Chaser", "Rockstar", "Rintaro", "Schwifty", "Tombstone", "Zip", "Foxhound","Ysterplaat", "Hamburg"
 }
 
 objective_idx = 1
