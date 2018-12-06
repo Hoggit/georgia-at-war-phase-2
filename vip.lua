@@ -26,7 +26,7 @@ end
 DropVIP = function(grp)
   if GAW.VIP.carriedVIPs[grp:getName()] ~= nil then
     if not inDropOffZone(grp) then
-      MessageToGroup(grp:getID(), "You're not in a VIP Drop off zone. Head to Maykop!")
+      MessageToGroup(grp:getID(), "You're not in a VIP Drop off zone. Head to the nearest logistics point!")
     else
       MessageToGroup(grp:getID(), "VIP Dropped off successfully!")
       GAW.VIP.carriedVIPs[grp:getName()] = nil

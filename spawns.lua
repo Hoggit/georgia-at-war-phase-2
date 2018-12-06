@@ -1,11 +1,8 @@
 -- Objective Names
 objective_names = {
-    "Archangel", "Yersanlaz", "Blackjack", "Wildcard", "Crackpipe", "Bullhorn", "Outlaw", "Eclipse","Joker", "Anthill",
-    "Firefly", "Rambo", "Rocky", "Dredd", "Smokey", "Vulture", "Parrot","Ender", "Sanchez", "Freeman", "Charlotte", "Orlando",
-    --Patreon
     "Eiger", "Snax", "Asteroid", "Sephton", "Blacklist", "Boot", "Maria",
     "Cheeki Breeki", "Husky", "Carrack", "Vegabond", "Jar Jar", "Plowshare", "Primrose", "Cracow",
-    "Chaser", "Rockstar", "Rintaro", "Schwifty", "Tombstone", "Zip", "Foxhound","Ysterplaat", "Hamburg"
+    "Chaser", "Rockstar", "Rintaro", "Schwifty", "Tombstone", "Zip", "Foxhound","Ysterplaat", "Hamburg", "BlackPearl"
 }
 
 objective_idx = 1
@@ -198,11 +195,18 @@ VIPSpawnZones = {
   {"VIPSpawn-Gudauta", "Gudauta"},
   {"VIPSpawn-Vody", "Vody"}
 }
---For Testing purposes
---VIPSpawnZones = {{"VIPSpawn-FarTest", "FarTest"}}
--- Doesn't work yet.
---VIPSignal = StaticSpawner("VIPFire", 1, { {0,0} })
-VIPDropoffZones = {"VIPDropOff-Maykop"}
+VIPDropoffZones = {
+  "VIPDropOff-Maykop",
+  "VIPDropOff-MaykopSouth",
+  "VIPDropOff-MaykopNorth",
+  "VIPDropOff-FARPAlpha",
+  "VIPDropOff-FARPBravo",
+  "VIPDropOff-FARPCharlie",
+  "VIPDropOff-FARPDelta",
+  "VIPDropOff-Gudauta",
+  "VIPDropOff-Sochi",
+  "VIPDropOff-Vody"
+}
 
 --Theater Objectives. Must be spawned once, and only where in the ME has them.
 TuapseRefinery = TheaterObjectiveSpawner("Tuapse Refinery", "TuapseRefineryDef")
