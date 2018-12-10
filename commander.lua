@@ -1,3 +1,18 @@
+max_caps_for_player_count = function(players)
+    local caps = 0
+
+    if players < 13 then
+        caps = 1
+    elseif players >= 13 and players < 18 then
+        caps = 2
+    elseif players >= 18 and players < 28 then
+        caps = 3
+    else
+        caps = 4
+    end
+    return caps
+end
+
 -- Main game loop, decision making about spawns happen here.
 russian_commander = function()
     -- Russian Theater Decision Making
@@ -33,22 +48,7 @@ russian_commander = function()
     local p_attack_airbase = 0.2
     local p_spawn_airbase_cap = 0.7
 
-    if bluePlaneCount < 13 then
-        max_caps = 1
-    end
-
-    if bluePlaneCount > 13 then
-        max_caps = 2
-    end
-
-    if bluePlaneCount > 18 then
-        max_caps = 3
-    end
-
-    if bluePlaneCount > 28 then
-        max_caps = 4
-    end
-
+    max_caps = max_caps_for_player_count(bluePlaneCount)
     log("There are " .. bluePlaneCount .. " blue planes in the mission, so we'll spawn a max of " .. max_caps .. " groups of enemy CAP")
 
     local alive_bai_targets = 0
@@ -57,17 +57,12 @@ russian_commander = function()
 
     -- Get the number of C2s in existance, and cleanup the state for dead ones.
     -- We'll make some further determiniation of what happens based on this
-    for group_name, group_table in pairs(c2s) do
-        alivec2s = alivec2s + 1
-    end
-
+    alivec2s = array_size(c2s)
     log("Russian commander has " .. alivec2s .. " command posts available...")
     
     
-    for group_name, group_table in pairs(ewrs) do
-      aliveEWRs = aliveEWRs + 1
-    end
-    
+    -- Get the number of EWRs in existence, as we use this for determination of spawn rates
+    aliveEWRs = array_size(ewrs)
     log("Russian commanbder has " .. aliveEWRs .. " EWRs available...")
     
     for group_name, group_table in pairs(striketargets) do
@@ -97,10 +92,7 @@ russian_commander = function()
 
     log("The Russian commander has " .. alive_caps .. " flights alive")
     -- Get Alive BAI Targets
-    for group_name, baitarget_table in pairs(baitargets) do
-        alive_bai_targets = alive_bai_targets + 1
-    end
-
+    alive_bai_targets = array_size(baitargets)
     log("The Russian commander has " .. alive_bai_targets .. " ground squads alive.")
 
     --if alivec2s == 0 then log('Russian commander whispers "BLYAT!" and runs for the hills before he ends up in a gulag.'); return nil end

@@ -41,3 +41,12 @@ tableIndex = function(tbl, val)
     end
   end
 end
+
+array_size = function(o)
+    local num = 0
+    for i, j in pairs(o) do
+        num = num + 1
+    end
+    return num
+end
+
