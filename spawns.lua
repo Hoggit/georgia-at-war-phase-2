@@ -142,6 +142,11 @@ TexacoSpawn:OnSpawnGroup(function(grp)
     scheduledSpawns[grp:getUnit(1):getName()] = {TexacoSpawn, 600}
 end)
 
+ArcoSpawn = Spawner("Arco")
+ArcoSpawn:OnSpawnGroup(function(grp)
+    scheduledSpawns[grp:getUnit(1):getName()] = {ArcoSpawn, 600}
+end)
+
 ShellSpawn = Spawner("Shell")
 ShellSpawn:OnSpawnGroup(function(grp)
     scheduledSpawns[grp:getUnit(1):getName()] = {ShellSpawn, 600}

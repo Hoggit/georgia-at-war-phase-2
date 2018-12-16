@@ -47,8 +47,10 @@ if statefile then
             end
         end
 
-        for i,grp in ipairs(abslots[name]) do
-            trigger.action.setUserFlag(grp, flagval)
+        if abslots[name] then
+            for i,grp in ipairs(abslots[name]) do
+                trigger.action.setUserFlag(grp, flagval)
+            end
         end
     end
 
@@ -314,6 +316,7 @@ mist.scheduleFunction(function()
     -- Friendly
     TexacoSpawn:Spawn()
     ShellSpawn:Spawn()
+    ArcoSpawn:Spawn()
     OverlordSpawn:Spawn()
 
     -- Enemy
