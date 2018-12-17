@@ -653,10 +653,5 @@ TheaterUpdate = function(theater)
   output = output .. "\n\nTHEATER OBJECTIVE:  Destroy all strike targets, all Command and Control (C2) units, and capture all primary airfields."
 
   log("Done theater update")
-  trigger.action.outText(output, 30)
   return output
 end
-
-mist.scheduleFunction(TheaterUpdate, {"Russian Theater"}, timer.getTime() + 60, 1800)
-
-
