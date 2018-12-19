@@ -47,16 +47,16 @@ log("Game State INIT")
 
 
 abslots = {
-    ['Sochi-Adler'] = {"Sochi Mi8 1", "Sochi Mi8 2", "Sochi UH-1H 1", "Sochi UH-1H 2", "Sochi Ka50"},
-    ['Gudauta'] = {"Gudauta Ka50", "Gudauta Mi8 1", "Gudauta Mi8 2", "Gudauta Mi8 3", "Gudauta Mi8 4", "Gudauta UH-1H 1", "Gudauta UH-1H 2"},
+    ['Sochi-Adler'] = {"Sochi Mi8 1", "Sochi Mi8 2", "Sochi UH-1H 1", "Sochi UH-1H 2", "Sochi Ka50", "Sochi SA342M", "Sochi SA342Mistral"},
+    ['Gudauta'] = {"Gudauta Ka50", "Gudauta Mi8 1", "Gudauta Mi8 2", "Gudauta Mi8 3", "Gudauta Mi8 4", "Gudauta UH-1H 1", "Gudauta UH-1H 2", "Gudauta SA342M", "Gudauta SA342Mistral"},
     ['Sukhumi-Babushara'] = {},
     ['Mineralnye Vody'] = {"Vody UH-1H 1", "Vody UH-1H 2", "Vody Mi8 1", "Vody Mi8 2"},
     ['Nalchik'] = {},
     ['Mozdok'] = {},
     ['FARP ALPHA'] = {"FARP Alpha UH-1H 1", "FARP Alpha UH-1H 2", "FARP Alpha Mi8 1", "FARP Alpha Mi8 2"},
-    ['FARP BRAVO'] = {"FARP Bravo Mi8 1", "FARP Bravo Mi8 2", "FARP Bravo UH-1H 1", "FARP Bravo UH-1H 2"},
-    ['FARP CHARLIE'] = {"FARP Charlie Mi8 1", "FARP Charlie Mi8 2", "FARP Charlie UH-1H 1", "FARP Charlie UH-1H 2", "FARP Charlie Ka50"},
-    ['FARP DELTA'] = {"FARP Delta UH-1H 1", "FARP Delta UH-1H 2", "FARP Delta Mi8 1", "FARP Delta Mi8 2"},
+    ['FARP BRAVO'] = {"FARP Bravo Mi8 1", "FARP Bravo Mi8 2", "FARP Bravo UH-1H 1", "FARP Bravo UH-1H 2", "FARP Bravo SA342M", "FARP Bravo SA342Mistral", "FARP Bravo Ka50"},
+    ['FARP CHARLIE'] = {"FARP Charlie Mi8 1", "FARP Charlie Mi8 2", "FARP Charlie UH-1H 1", "FARP Charlie UH-1H 2", "FARP Charlie Ka50", "FARP Charlie SA342M", "FARP Charlie SA342Mistral"},
+    ['FARP DELTA'] = {"FARP Delta UH-1H 1", "FARP Delta UH-1H 2", "FARP Delta Mi8 1", "FARP Delta Mi8 2", "FARP Delta Ka50", , "FARP Delta Ka50", "FARP Charlie SA342M", "FARP Charlie SA342Mistral"},
 }
 
 logiSlots = {

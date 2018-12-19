@@ -259,7 +259,9 @@ else
     trigger.action.setUserFlag("Sochi Mi8 2",100)
     trigger.action.setUserFlag("Sochi UH-1H 1",100)
     trigger.action.setUserFlag("Sochi UH-1H 2",100)
-    trigger.action.setUserFlag("Sochi Ka-50",100)
+    trigger.action.setUserFlag("Sochi Ka50",100)
+    trigger.action.setUserFlag("Sochi SA342M",100)
+    trigger.action.setUserFlag("Sochi SA342Mistral",100)
 
     trigger.action.setUserFlag("Gudauta Mi8 1",100)
     trigger.action.setUserFlag("Gudauta Mi8 2",100)
@@ -267,18 +269,25 @@ else
     trigger.action.setUserFlag("Gudauta Mi8 4",100)
     trigger.action.setUserFlag("Gudauta UH-1H 1",100)
     trigger.action.setUserFlag("Gudauta UH-1H 2",100)
+    trigger.action.setUserFlag("Gudauta Ka50",100)
+    trigger.action.setUserFlag("Gudauta SA342M",100)
+    trigger.action.setUserFlag("Gudauta SA342Mistral",100)
 
     trigger.action.setUserFlag("Maykop North Mi8 1",100)
     trigger.action.setUserFlag("Maykop North Mi8 2",100)
     trigger.action.setUserFlag("Maykop North UH-1H 1",100)
     trigger.action.setUserFlag("Maykop North UH-1H 2",100)
-    trigger.action.setUserFlag("Maykop North Ka-50",100)
+    trigger.action.setUserFlag("Maykop North Ka50",100)
+    trigger.action.setUserFlag("Maykop North SA342M",100)
+    trigger.action.setUserFlag("Maykop North SA342Mistral",100)
 
     trigger.action.setUserFlag("Maykop South Mi8 1",100)
     trigger.action.setUserFlag("Maykop South Mi8 2",100)
     trigger.action.setUserFlag("Maykop South UH-1H 1",100)
     trigger.action.setUserFlag("Maykop South UH-1H 2",100)
-    trigger.action.setUserFlag("Maykop South Ka-50",100)
+    trigger.action.setUserFlag("Maykop South Ka50",100)
+    trigger.action.setUserFlag("Maykop South SA342M",100)
+    trigger.action.setUserFlag("Maykop South SA342Mistral",100)
 
     trigger.action.setUserFlag("Vody Mi8 1",100)
     trigger.action.setUserFlag("Vody Mi8 2",100)
@@ -292,12 +301,16 @@ else
 
 
     trigger.action.setUserFlag("FARP Bravo Ka50",100)
+    trigger.action.setUserFlag("FARP Bravo SA342M",100)
+    trigger.action.setUserFlag("FARP Bravo SA342Mistral",100)
     trigger.action.setUserFlag("FARP Bravo Mi8 1",100)
     trigger.action.setUserFlag("FARP Bravo Mi8 2",100)
     trigger.action.setUserFlag("FARP Bravo UH-1H 1",100)
     trigger.action.setUserFlag("FARP Bravo UH-1H 2",100)
 
     trigger.action.setUserFlag("FARP Charlie Ka50",100)
+    trigger.action.setUserFlag("FARP Charlie SA342M",100)
+    trigger.action.setUserFlag("FARP Charlie SA342Mistral",100)
     trigger.action.setUserFlag("FARP Charlie Mi8 1",100)
     trigger.action.setUserFlag("FARP Charlie Mi8 2",100)
     trigger.action.setUserFlag("FARP Charlie UH-1H 1",100)
@@ -305,6 +318,8 @@ else
 
 
     trigger.action.setUserFlag("FARP Delta Ka50",100)
+    trigger.action.setUserFlag("FARP Delta SA342M",100)
+    trigger.action.setUserFlag("FARP Delta SA342Mistral",100)
     trigger.action.setUserFlag("FARP Delta Mi8 1",100)
     trigger.action.setUserFlag("FARP Delta Mi8 2",100)
     trigger.action.setUserFlag("FARP Delta UH-1H 1",100)
