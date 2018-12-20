@@ -56,7 +56,7 @@ abslots = {
     ['FARP ALPHA'] = {"FARP Alpha UH-1H 1", "FARP Alpha UH-1H 2", "FARP Alpha Mi8 1", "FARP Alpha Mi8 2"},
     ['FARP BRAVO'] = {"FARP Bravo Mi8 1", "FARP Bravo Mi8 2", "FARP Bravo UH-1H 1", "FARP Bravo UH-1H 2", "FARP Bravo SA342M", "FARP Bravo SA342Mistral", "FARP Bravo Ka50"},
     ['FARP CHARLIE'] = {"FARP Charlie Mi8 1", "FARP Charlie Mi8 2", "FARP Charlie UH-1H 1", "FARP Charlie UH-1H 2", "FARP Charlie Ka50", "FARP Charlie SA342M", "FARP Charlie SA342Mistral"},
-    ['FARP DELTA'] = {"FARP Delta UH-1H 1", "FARP Delta UH-1H 2", "FARP Delta Mi8 1", "FARP Delta Mi8 2", "FARP Delta Ka50", , "FARP Delta Ka50", "FARP Charlie SA342M", "FARP Charlie SA342Mistral"},
+    ['FARP DELTA'] = {"FARP Delta UH-1H 1", "FARP Delta UH-1H 2", "FARP Delta Mi8 1", "FARP Delta Mi8 2", "FARP Delta Ka50", "FARP Delta Ka50", "FARP Charlie SA342M", "FARP Charlie SA342Mistral"},
 }
 
 logiSlots = {
