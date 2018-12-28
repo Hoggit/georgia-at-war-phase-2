@@ -129,13 +129,14 @@ NorthGeorgiaTransportSpawns = {
 }
 
 NorthGeorgiaFARPTransportSpawns = {
-    ["FARP ALPHA"] = {Spawner("FARPAlphaXportHelo"), nil, nil},
-    ["FARP BRAVO"] = {Spawner("FARPBravoXportHelo"), nil, nil},
-    ["FARP CHARLIE"] = {Spawner("FARPCharlieXportHelo"),nil, nil},
-    ["FARP DELTA"] = {Spawner("FARPDeltaXportHelo"),nil, nil},
+    ["FARP ALPHA"] = {Spawner("FARPAlphaXportHelo"), nil, LogiFARPALPHASpawn},
+    ["FARP BRAVO"] = {Spawner("FARPBravoXportHelo"), nil, LogiFARPBRAVOSpawn},
+    ["FARP CHARLIE"] = {Spawner("FARPCharlieXportHelo"),nil, LogiFARPCHARLIESpawn},
+    ["FARP DELTA"] = {Spawner("FARPDeltaXportHelo"),nil, LogiFARPDELTASpawn},
 }
 scheduledSpawns = {}
-
+BlueSecurityForcesGroups = {}
+BlueFarpSupportGroups = {}
 -- Support Spawn
 TexacoSpawn = Spawner("Texaco")
 TexacoSpawn:OnSpawnGroup(function(grp)
@@ -411,8 +412,8 @@ end
 
 activeBlueXports = {}
 
-addToActiveBlueXports = function(group, defense_group_spawner, target, is_farp, xport_data)
-    activeBlueXports[group:getName()] = {defense_group_spawner, target, is_farp, xport_data}
+addToActiveBlueXports = function(group, defense_group_spawner, target, is_farp, xport_data, logiunit)
+    activeBlueXports[group:getName()] = {defense_group_spawner, target, is_farp, xport_data, logiunit}
     log("Added " .. group:getName() .. " to active blue transports")
 end
 
@@ -424,13 +425,13 @@ for name,spawn in pairs(NorthGeorgiaTransportSpawns) do
     for i=1,2 do
         if i == 1 then
             spawn[i]:OnSpawnGroup(function(SpawnedGroup)
-                addToActiveBlueXports(SpawnedGroup, AirfieldDefense, name, false, spawn[i])
+                addToActiveBlueXports(SpawnedGroup, AirfieldDefense, name, false, spawn[i], spawn[3])
             end)
         end
 
         if i == 2 then
             spawn[i]:OnSpawnGroup(function(SpawnedGroup)
-                addToActiveBlueXports(SpawnedGroup, AirfieldDefense, name, false, spawn[i])
+                addToActiveBlueXports(SpawnedGroup, AirfieldDefense, name, false, spawn[i], spawn[3])
             end)
         end
 
@@ -439,7 +440,7 @@ end
 
 for name,spawn in pairs(NorthGeorgiaFARPTransportSpawns) do
     spawn[1]:OnSpawnGroup(function(SpawnedGroup)
-        addToActiveBlueXports(SpawnedGroup, AirfieldDefense, name, true, spawn)
+        addToActiveBlueXports(SpawnedGroup, AirfieldDefense, name, true, spawn, spawn[3])
     end)
 end
 

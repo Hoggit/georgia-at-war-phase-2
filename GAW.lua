@@ -359,9 +359,17 @@ end
 
 mist.addEventHandler(handleDeaths)
 
+function respawnGroundGroup(existingGrp, spawnerObject, pos)
+  if existingGrp ~= nil then
+    log('destroying existing ground group ' .. existingGrp:getName())
+    existingGrp:destroy()
+  end
+  return spawnerObject:SpawnAtPoint(pos)
+end
+
 function securityForcesLanding(event)
-  if event.id == world.event.S_EVENT_LAND then
-    log("Land Event!")
+  if event.id == world.event.S_EVENT_LAND or event.id == world.event.S_EVENT_ENGINE_SHUTDOWN then
+    log("Land or Engine Shutdown Event!")
     local xport = activeBlueXports[event.initiator:getGroup():getName()]
     if xport then
       local abname = xport[2]
@@ -377,9 +385,9 @@ function securityForcesLanding(event)
         else
           trigger.action.outSoundForCoalition(2, abcapsound)
         end
-
-        if xport[4][3] then
-          activateLogi(xport[4][3])
+        
+        if xport[5] then
+          activateLogi(xport[5])
           log("Logi activated")
         else
           log("No logi point here")
@@ -395,11 +403,11 @@ function securityForcesLanding(event)
           y = landPos.z + 80
         }
 
-        AirfieldDefense:SpawnAtPoint(pos)
-        FSW:SpawnAtPoint({
-            x = pos.x - 10,
-            y = pos.y - 10
-          })
+        -- check if FSW/Defense group is already spawned at target
+        -- destroy it if it exists before creating a new one
+        BlueSecurityForcesGroups[abname] = respawnGroundGroup(BlueSecurityForcesGroups[abname], AirfieldDefense, pos)
+        BlueFarpSupportGroups[abname] = respawnGroundGroup(BlueFarpSupportGroups[abname], FSW, { x = pos.x - 10, y = pos.y - 10 })
+
         log("Security forces have spawned")
       end
       mist.scheduleFunction(event.initiator.destroy, {event.initiator}, timer.getTime() + 120)

@@ -32,14 +32,14 @@ if statefile then
                 flagval = 100
             end
         elseif coalition == 2 then
-            AirfieldDefense:SpawnAtPoint({
+            BlueSecurityForcesGroups[name] = AirfieldDefense:SpawnAtPoint({
                 x = posx,
                 y = posy
             })
 
             posx = posx + math.random(100, 200)
             posy = posy + math.random(100, 200)
-            FSW:SpawnAtPoint({x=posx, y=posy})
+            BlueFarpSupportGroups[name] = FSW:SpawnAtPoint({x=posx, y=posy})
             flagval = 0
 
             if ab_logi_slots[name] then
@@ -70,10 +70,10 @@ if statefile then
             spawns[math.random(4)]:SpawnAtPoint({x = apV3.x, y= apV3.z})
             flagval = 100
         elseif coalition == 2 then
-            AirfieldDefense:SpawnAtPoint(apV3)
+            BlueSecurityForcesGroups[name] = AirfieldDefense:SpawnAtPoint(apV3)
             apV3.x = apV3.x + 50
             apV3.z = apV3.z - 50
-            FSW:SpawnAtPoint({x=apV3.x, y=apV3.z}, true)
+            BlueFarpSupportGroups[name] = FSW:SpawnAtPoint({x=apV3.x, y=apV3.z}, true)
             flagval = 0
 
             if ab_logi_slots[name] then
@@ -116,9 +116,11 @@ if statefile then
 
     for name, data in pairs(saved_game_state["Theaters"]["Russian Theater"]["StrikeTargets"]) do
         local spawn
+        log('spawning ' .. data['spawn_name'])
         if data['spawn_name'] == 'AmmoDump' then spawn = AmmoDumpSpawn end
         if data['spawn_name'] == 'CommsArray' then spawn = CommsArraySpawn end
         if data['spawn_name'] == 'PowerPlant' then spawn = PowerPlantSpawn end
+        log(inspect(spawn))
         local static = spawn:Spawn({
             data['position'].x,
             data['position'].z
