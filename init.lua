@@ -291,10 +291,19 @@ else
     trigger.action.setUserFlag("Maykop South SA342M",100)
     trigger.action.setUserFlag("Maykop South SA342Mistral",100)
 
+    trigger.action.setUserFlag("Vody Ka50",100)
     trigger.action.setUserFlag("Vody Mi8 1",100)
     trigger.action.setUserFlag("Vody Mi8 2",100)
+    trigger.action.setUserFlag("Vody Mi8 3",100)
+    trigger.action.setUserFlag("Vody Mi8 4",100)
     trigger.action.setUserFlag("Vody UH-1H 1",100)
     trigger.action.setUserFlag("Vody UH-1H 2",100)
+    trigger.action.setUserFlag("Vody UH-1H 3",100)
+    trigger.action.setUserFlag("Vody UH-1H 4",100)
+    trigger.action.setUserFlag("Vody A-10C",100)
+    trigger.action.setUserFlag("Vody F-18",100)
+    trigger.action.setUserFlag("Vody Su25T",100)
+
 
     trigger.action.setUserFlag("FARP Alpha Mi8 1",100)
     trigger.action.setUserFlag("FARP Alpha Mi8 2",100)
@@ -324,8 +333,15 @@ else
     trigger.action.setUserFlag("FARP Delta SA342Mistral",100)
     trigger.action.setUserFlag("FARP Delta Mi8 1",100)
     trigger.action.setUserFlag("FARP Delta Mi8 2",100)
+    trigger.action.setUserFlag("FARP Delta Mi8 3",100)
+    trigger.action.setUserFlag("FARP Delta Mi8 4",100)
+    trigger.action.setUserFlag("FARP Delta Harrier",100)
     trigger.action.setUserFlag("FARP Delta UH-1H 1",100)
     trigger.action.setUserFlag("FARP Delta UH-1H 2",100)
+    trigger.action.setUserFlag("FARP Delta UH-1H 3",100)
+    trigger.action.setUserFlag("FARP Delta UH-1H 4",100)
+    trigger.action.setUserFlag("FARP Delta UH-1H 5",100)
+    trigger.action.setUserFlag("FARP Delta UH-1H 6",100)
 end
 
 -- Kick off supports
