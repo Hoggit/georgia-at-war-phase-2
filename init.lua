@@ -120,7 +120,6 @@ if statefile then
         if data['spawn_name'] == 'AmmoDump' then spawn = AmmoDumpSpawn end
         if data['spawn_name'] == 'CommsArray' then spawn = CommsArraySpawn end
         if data['spawn_name'] == 'PowerPlant' then spawn = PowerPlantSpawn end
-        log(inspect(spawn))
         local static = spawn:Spawn({
             data['position'].x,
             data['position'].z
@@ -361,3 +360,39 @@ mist.scheduleFunction(function() RussianTheaterCASSpawn:Spawn(); RussianTheaterS
 -- Kick off the commanders
 mist.scheduleFunction(russian_commander, {}, timer.getTime() + 10, 600)
 log("init.lua complete")
+-- TEMPORARY LOGGING FOR CHECKING WHAT WEAPON MIGHT BE CAUSING OUR CRASHES.
+local sams = {}
+
+sams.eventHandler = {}
+
+function sams.eventHandler:onEvent(_event)
+
+    if _event == nil or _event.initiator == nil then
+        --IGNORE
+        return
+    end
+
+    local _status, _result = pcall(function()
+
+        if _event.id == world.event.S_EVENT_SHOT then
+    
+            local _ordnance =  _event.weapon
+            local _desc = _ordnance:getDesc()
+            env.info("Tracking ".._ordnance:getTypeName().." - ".._ordnance:getName())
+            env.info(mist.utils.tableShow(_ordnance:getDesc()))
+         
+        end
+
+    end)
+
+    if (not _status) then
+        env.error(string.format("Error with Sam Script: %s", _result))
+    end
+end
+
+
+
+
+world.addEventHandler(sams.eventHandler)
+
+env.info("Loaded SAM Script")
