@@ -96,13 +96,8 @@ function transportLand(event)
     log("TransportLand")
     if activeXports[event.initiator:getGroup():getName()] then
       local grpLoc = event.initiator:getPosition().p
-      local landPos
-      if event.place then
-        landPos = event.place:getPosition().p
-      else
-        landPos = Airbase.getByName(activeXports[event.initiator:getGroup():getName()][2]):getPosition().p
-      end
-      local distance = mist.utils.get2DDist(grpLoc, landPos)
+      local destinationLoc = Airbase.getByName(activeXports[event.initiator:getGroup():getName()][2]):getPosition().p
+      local distance = mist.utils.get2DDist(grpLoc, destinationLoc)
       log("Transport landed " .. distance .. " meters from target")
       if (distance <= 3000) then
         log("Within range, spawning Russian Forces")
