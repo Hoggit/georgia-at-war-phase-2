@@ -73,23 +73,7 @@ russian_commander = function()
     log("Russian commander has " .. aliveAmmoDumps .. " Ammo Dumps available...")
     log("Russian commander has " .. aliveCommsArrays .. " Comms Arrays available...")
 
-    -- Get alive caps and cleanup state
-    for i=#caps, 1, -1 do
-        local cap = Group.getByName(caps[i])
-        if cap and isAlive(cap) then
-            if allOnGround(cap) then
-                cap:destroy()
-                log("Found inactive cap, removing")
-                table.remove(caps, i)
-            else
-                alive_caps = alive_caps + 1
-            end
-        else
-            table.remove(caps, i)
-        end
-    end
-
-
+    alive_caps = #caps
     log("The Russian commander has " .. alive_caps .. " flights alive")
     -- Get Alive BAI Targets
     alive_bai_targets = array_size(baitargets)
@@ -152,20 +136,8 @@ russian_commander = function()
     end
 
     log("Checking interceptors...")
-    if math.random() < p_spawn_mig31s then
-        for i,g in ipairs(enemy_interceptors) do
-            if allOnGround(g) then
-                Group.getByName(g):destroy()
-            end
-
-            if not isAlive(g) then
-                enemy_interceptors = {}
-            end
-        end
-
-        if #enemy_interceptors == 0 then
-            RussianTheaterMig312ShipSpawn:Spawn()
-        end
+    if #enemy_interceptors == 0 and math.random() < p_spawn_mig31s then
+        RussianTheaterMig312ShipSpawn:Spawn()
     end
     log("The commander has " .. #enemy_interceptors .. " alive")
 

@@ -1,5 +1,11 @@
+CLEANUP_PERIOD = 125
+CLEANUP_CAP_PERIOD = 600
+last_cap_cleanup_time = env.mission.start_time
+
 function cleanup()
     log("Starting Cleanup BAI Targets")
+    local current_time = timer.getAbsTime() + env.mission.start_time
+
     -- Get Alive BAI Targets and cleanup state
     local baitargets = game_state["Theaters"]["Russian Theater"]["BAI"]
     for group_name, baitarget_table in pairs(baitargets) do
@@ -71,7 +77,35 @@ function cleanup()
         log("Objective " .. obj_name .. " is still alive with " .. Group.getByName(obj.groupName):getSize() .. " units")
       end
     end
+
+    if (current_time - last_cap_cleanup_time) >= CLEANUP_CAP_PERIOD then
+        last_cap_cleanup_time = current_time
+
+        local caps = game_state["Theaters"]["Russian Theater"]["CAP"]
+        for i=#caps, 1, -1 do
+            local cap = Group.getByName(caps[i])
+            if cap and isAlive(cap) then
+                if allOnGround(cap) then
+                    cap:destroy()
+                    log("Found inactive cap, removing")
+                    table.remove(caps, i)
+                end
+            else
+                table.remove(caps, i)
+            end
+        end
+
+        for i,g in ipairs(enemy_interceptors) do
+            if allOnGround(g) then
+                Group.getByName(g):destroy()
+            end
+
+            if not isAlive(g) then
+                enemy_interceptors = {}
+            end
+        end
+    end
     log("Done Clean script")
 end
 
-mist.scheduleFunction(cleanup, {}, timer.getTime() + 47, 125)
+mist.scheduleFunction(cleanup, {}, timer.getTime() + 47, CLEANUP_PERIOD)
