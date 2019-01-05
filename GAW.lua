@@ -499,13 +499,16 @@ end
 
 AddStaticObjective = function(id, callsign, spawn_name, staticNames)
   local point = StaticObject.getByName(staticNames[1]):getPosition().p
-  game_state["Theaters"]["Russian Theater"]["StrikeTargets"]["strike" .. id] = {
+  local type = "StrikeTargets"
+  game_state["Theaters"]["Russian Theater"][type]["strike" .. id] = {
     ['callsign'] = callsign,
     ['spawn_name'] = spawn_name,
     ['position'] = point,
     ['markerID'] = id,
     ['statics'] = staticNames
   }
+
+  trigger.action.markToCoalition(id, objectiveTypeMap[type] .. " - " .. callsign, point, 2, true)
 end
 
 AddConvoy = function(group, spawn_name, callsign)
