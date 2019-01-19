@@ -24,6 +24,7 @@ function cleanup()
                 log("Not enough units, destroying")
                 baitarget:destroy()
                 baitargets[group_name] = nil
+                GameStats:decrement("bai")
             end
         else
             --for i,rearm_spawn in ipairs(rearm_spawns) do
@@ -31,6 +32,7 @@ function cleanup()
            -- end
             trigger.action.outText("BAI target " .. baitarget_table['callsign'] .. " destroyed!", 15)
             baitargets[group_name] = nil
+            GameStats:decrement("bai")
         end
     end
 
@@ -42,6 +44,7 @@ function cleanup()
         if groupIsDead(group_name) then
             trigger.action.outText("Mobile CP " .. group_table['callsign'] .. " destroyed!", 15)
             game_state["Theaters"]["Russian Theater"]["C2"][group_name] = nil
+            GameStats:decrement("c2")
         end
     end
 
@@ -89,9 +92,11 @@ function cleanup()
                     cap:destroy()
                     log("Found inactive cap, removing")
                     table.remove(caps, i)
+                    GameStats:decrement("caps")
                 end
             else
                 table.remove(caps, i)
+                GameStats:decrement("caps")
             end
         end
 
