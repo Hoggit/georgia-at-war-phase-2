@@ -84,7 +84,7 @@ game_stats = {
     airports = {
         alive = 0,
         nominal = 3,
-        tbl = nil, -- TODO
+        tbl = game_state["Theaters"]["Russian Theater"]["Airfields"],
     },
 }
 
