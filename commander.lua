@@ -16,6 +16,9 @@
 --]]
 
 max_caps_for_player_count = function(players)
+    if players == nil then
+      players = get_player_count()
+    end
     local caps = 0
 
     if players < 13 then
@@ -36,6 +39,7 @@ get_player_count = function()
     for i,v in pairs(bluePlanes) do
         if Unit.getByName(v) then bluePlaneCount = bluePlaneCount + 1 end
     end
+    return bluePlaneCount
 end
 
 --[[
@@ -198,11 +202,11 @@ spawn_bai = function()
     baispawn:SpawnInZone(zone)
 end
 
-request_bai = function(bai, time, cmd_util)
+request_bai = function(bai, time, utils)
     local delay_max = 1200
     local delay_min = 180
     local sigma = 60
-    local delay = time + command_delay(cmd_util, delay_min, delay_max)
+    local delay = time + command_delay(utils.command_efficiency, delay_min, delay_max)
 
     if bai.alive < bai.nominal then
         log("Russian Commander is going to request " ..
