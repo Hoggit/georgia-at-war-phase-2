@@ -103,9 +103,9 @@
  -- When this limit is hit, a player will still be able to get crates for an AA system, just unable
  -- to unpack them
  
- ctld.AASystemLimitRED = 20 -- Red side limit
+ ctld.AASystemLimitRED = 10 -- Red side limit
  
- ctld.AASystemLimitBLUE = 20 -- Blue side limit
+ ctld.AASystemLimitBLUE = 10 -- Blue side limit
  
  --END AA SYSTEM CONFIG --
  

@@ -49,3 +49,10 @@ end
 function addstddev(val, sigma)
     return val + math.random(-sigma, sigma)
 end
+
+TableConcat = function(t1,t2)
+    for i=1,#t2 do
+        t1[#t1+1] = t2[i]
+    end
+    return t1
+end
