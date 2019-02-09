@@ -43,6 +43,51 @@ game_state = {
     }
 }
 
+game_stats = {
+    c2    = {
+        alive = 0,
+        nominal = 3,
+        tbl   = game_state["Theaters"]["Russian Theater"]["C2"],
+    },
+    ewr = {
+        alive = 0,
+        nominal = 3,
+        tbl   = game_state["Theaters"]["Russian Theater"]["EWR"],
+    },
+    awacs = {
+        alive = 0,
+        nominal = 1,
+        tbl   = game_state["Theaters"]["Russian Theater"]["AWACS"],
+    },
+    bai = {
+        alive = 0,
+        nominal = 5,
+        tbl = game_state["Theaters"]["Russian Theater"]["BAI"],
+    },
+    ammo = {
+        alive = 0,
+        nominal = 3,
+        tbl   = game_state["Theaters"]["Russian Theater"]["StrikeTargets"],
+        subtype = "AmmoDump",
+    },
+    comms = {
+        alive = 0,
+        nominal = 2,
+        tbl   = game_state["Theaters"]["Russian Theater"]["StrikeTargets"],
+        subtype = "CommsArray",
+    },
+    caps = {
+        alive = 0,
+        nominal = 7,
+        tbl = game_state["Theaters"]["Russian Theater"]["CAP"],
+    },
+    airports = {
+        alive = 0,
+        nominal = 3,
+        tbl = game_state["Theaters"]["Russian Theater"]["Airfields"],
+    },
+}
+
 log("Game State INIT")
 
 

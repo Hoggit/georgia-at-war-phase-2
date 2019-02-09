@@ -2,7 +2,7 @@
 objective_names = {
     "Eiger", "Snax", "Asteroid", "Sephton", "Blacklist", "Boot", "Maria",
     "Cheeki Breeki", "Husky", "Carrack", "Vegabond", "Jar Jar", "Plowshare", "Primrose", "Cracow",
-    "Chaser", "Rockstar", "Rintaro", "Schwifty", "Tombstone", "Zip", "Foxhound","Ysterplaat", "Hamburg", "BlackPearl"
+    "Chaser", "Rockstar", "Rintaro", "Schwifty", "Tombstone", "Zip", "Foxhound","Ysterplaat", "Hamburg", "BlackPearl", "Nitro", "SledgeHammer"
 }
 
 objective_idx = 1
@@ -248,6 +248,7 @@ AmmoDumpSpawn:OnSpawnGroup(function(staticNames, pos)
     local callsign = getCallsign()
     AddStaticObjective(getMarkerId(), callsign, "AmmoDump", staticNames)
     SpawnStaticDefense("Ammo DumpDEF", pos)
+    GameStats:increment("ammo")
 end)
 
 CommsArraySpawn = StaticSpawner("Comms Array", 3, {
@@ -259,8 +260,8 @@ CommsArraySpawn = StaticSpawner("Comms Array", 3, {
 CommsArraySpawn:OnSpawnGroup(function(staticNames, pos)
     local callsign = getCallsign()
     AddStaticObjective(getMarkerId(), callsign, "CommsArray", staticNames)
-
     SpawnStaticDefense("Comms ArrayDEF", pos)
+    GameStats:increment("comms")
 end)
 
 PowerPlantSpawn = StaticSpawner("Power Plant", 7, {
@@ -366,6 +367,7 @@ RussianTheaterAWACSSpawn:OnSpawnGroup(function(SpawnedGroup)
     local callsign = "Overseer"
     AddObjective("AWACS", getMarkerId())(SpawnedGroup, "AWACS", callsign)
     RussianTheaterAWACSPatrol:Spawn()
+    GameStats:increment("awacs")
 end)
 
 RussianTheaterSA6Spawn[1]:OnSpawnGroup(function(SpawnedGroup)
@@ -384,12 +386,14 @@ RussianTheaterEWRSpawn[1]:OnSpawnGroup(function(SpawnedGroup)
     local callsign = getCallsign()
     AddObjective("EWR", getMarkerId())(SpawnedGroup, RussianTheaterEWRSpawn[2], callsign)
     buildCheckEWREvent(SpawnedGroup, callsign)
+    GameStats:increment("ewr")
 end)
 
 RussianTheaterC2Spawn[1]:OnSpawnGroup(function(SpawnedGroup)
     local callsign = getCallsign()
     AddObjective("C2", getMarkerId())(SpawnedGroup, RussianTheaterC2Spawn[2], callsign)
     buildCheckC2Event(SpawnedGroup, callsign)
+    GameStats:increment("c2")
 end)
 
 SpawnOPFORCas = function(spawn)
@@ -401,12 +405,14 @@ for i,v in ipairs(baispawns) do
     v[1]:OnSpawnGroup(function(SpawnedGroup)
         local callsign = getCallsign()
         AddObjective("BAI", getMarkerId())(SpawnedGroup, v[2], callsign)
+        GameStats:increment("bai")
     end)
 end
 
 for i,v in ipairs(allcaps) do
     v:OnSpawnGroup(function(SpawnedGroup)
         AddRussianTheaterCAP(SpawnedGroup)
+        GameStats:increment("caps")
     end)
 end
 

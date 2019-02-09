@@ -355,44 +355,11 @@ mist.scheduleFunction(function()
     RussianTheaterAWACSSpawn:Spawn()
 end, {}, timer.getTime() + 10)
 
-mist.scheduleFunction(function() RussianTheaterCASSpawn:Spawn(); RussianTheaterSOUTHCASSpawn:Spawn() end, {}, timer.getTime() + 10, 3600)
+mist.scheduleFunction(function()
+  RussianTheaterCASSpawn:Spawn()
+  RussianTheaterSOUTHCASSpawn:Spawn()
+end, {}, timer.getTime() + 10, 1800)
 
 -- Kick off the commanders
 mist.scheduleFunction(russian_commander, {}, timer.getTime() + 10, 600)
 log("init.lua complete")
--- TEMPORARY LOGGING FOR CHECKING WHAT WEAPON MIGHT BE CAUSING OUR CRASHES.
-local sams = {}
-
-sams.eventHandler = {}
-
-function sams.eventHandler:onEvent(_event)
-
-    if _event == nil or _event.initiator == nil then
-        --IGNORE
-        return
-    end
-
-    local _status, _result = pcall(function()
-
-        if _event.id == world.event.S_EVENT_SHOT then
-    
-            local _ordnance =  _event.weapon
-            local _desc = _ordnance:getDesc()
-            env.info("Tracking ".._ordnance:getTypeName().." - ".._ordnance:getName())
-            env.info(mist.utils.tableShow(_ordnance:getDesc()))
-         
-        end
-
-    end)
-
-    if (not _status) then
-        env.error(string.format("Error with Sam Script: %s", _result))
-    end
-end
-
-
-
-
-world.addEventHandler(sams.eventHandler)
-
-env.info("Loaded SAM Script")

@@ -6,6 +6,24 @@ json = loadfile(jsonlib)()
 logFile = io.open(lfs.writedir()..[[Logs\Hoggit-GAW.log]], "w")
 --JSON = (loadfile "JSON.lua")()
 
+_stats_add = function(statobj, objtype, val)
+    statobj[objtype].alive = statobj[objtype].alive + val
+    return statobj[objtype].alive
+end
+
+GameStats = {
+    increment = function(self, objtype)
+        return _stats_add(game_stats, objtype, 1)
+    end,
+    decrement = function(self, objtype)
+        return _stats_add(game_stats, objtype, -1)
+    end,
+    get = function(self)
+        game_stats.caps.nominal = max_caps_for_player_count(get_player_count())
+        return game_stats
+    end,
+}
+
 GAW = {}
 function log(str)
   if str == nil then str = 'nil' end
@@ -499,13 +517,16 @@ end
 
 AddStaticObjective = function(id, callsign, spawn_name, staticNames)
   local point = StaticObject.getByName(staticNames[1]):getPosition().p
-  game_state["Theaters"]["Russian Theater"]["StrikeTargets"]["strike" .. id] = {
+  local type = "StrikeTargets"
+  game_state["Theaters"]["Russian Theater"][type]["strike" .. id] = {
     ['callsign'] = callsign,
     ['spawn_name'] = spawn_name,
     ['position'] = point,
     ['markerID'] = id,
     ['statics'] = staticNames
   }
+
+  trigger.action.markToCoalition(id, objectiveTypeMap[type] .. " - " .. callsign, point, 2, true)
 end
 
 AddConvoy = function(group, spawn_name, callsign)
