@@ -392,6 +392,10 @@ end
 function securityForcesLanding(event)
   if event.id == world.event.S_EVENT_LAND or event.id == world.event.S_EVENT_ENGINE_SHUTDOWN then
     log("Land or Engine Shutdown Event!")
+    if event.initiator == nil then
+      log("event.initiator was nil. Skipping securityForcesLanding")
+      return
+    end
     local xport = activeBlueXports[event.initiator:getGroup():getName()]
     if xport then
       local abname = xport[2]
