@@ -134,6 +134,50 @@ NorthGeorgiaFARPTransportSpawns = {
     ["FARP CHARLIE"] = {Spawner("FARPCharlieXportHelo"),nil, LogiFARPCHARLIESpawn},
     ["FARP DELTA"] = {Spawner("FARPDeltaXportHelo"),nil, LogiFARPDELTASpawn},
 }
+
+
+-- Tells a tanker (or other aircraft for that matter) to orbit between two points at a set altitude
+
+BladderPos = {}
+BladderPos.hMaxFlightAlt	= 5486	-- meters [18 000']: Don't let the aircraft fly higher than this as Hogs won't be able to refuel. TODO: Make overrideable
+BladderPos.vSpeed			= 160		-- m/s [300kts]: Default speed of the unit
+
+function BladderPos.InitOnGroup(planeGroup, vSpeed)
+	local planeGroupName	= planeGroup:getName()
+	vSpeed = vSpeed or BladderPos.vSpeed
+	
+	local clouds = env.mission.weather.clouds
+	
+	-- Calculate orbit height. Ignore for partial cloud conditions
+	local hOrbit = BladderPos.hMaxFlightAlt
+	if (((clouds.base + clouds.thickness) >= hOrbit - 305) and (clouds.density >= 7)) then
+		hOrbit = math.min(clouds.base - 305, BladderPos.hMaxFlightAlt)
+	end
+	
+	local curRoute = mist.getGroupRoute(planeGroupName, true)
+	
+	for i = 1, #curRoute do
+		curRoute[i].alt = hOrbit
+		
+		-- Modify any orbit taskings
+		if #curRoute[i].task ~= nil then
+			if #curRoute[i].task.params ~= nil then
+				if #curRoute[i].task.params.tasks ~= nil then
+					for t = 1, #curRoute[i].task.params.tasks do
+						local curTask = curRoute[i].task.params.tasks[t]
+						if curTask.id == "Orbit" then
+							curTask.params.altitude = hOrbit
+							curTask.params.speed = vSpeed
+						end
+					end
+				end
+			end
+		end
+	end
+	
+	local route = mist.goRoute(planeGroup, curRoute)
+end
+
 scheduledSpawns = {}
 BlueSecurityForcesGroups = {}
 BlueFarpSupportGroups = {}
@@ -141,16 +185,19 @@ BlueFarpSupportGroups = {}
 TexacoSpawn = Spawner("Texaco")
 TexacoSpawn:OnSpawnGroup(function(grp)
     scheduledSpawns[grp:getUnit(1):getName()] = {TexacoSpawn, 600}
+	BladderPos.InitOnGroup(grp, 145) -- Init against cloud base at 145m/s (280 knots)
 end)
 
 ArcoSpawn = Spawner("Arco")
 ArcoSpawn:OnSpawnGroup(function(grp)
     scheduledSpawns[grp:getUnit(1):getName()] = {ArcoSpawn, 600}
+	BladderPos.InitOnGroup(grp, 165) -- Init against cloud base at 165m/s (320 knots)
 end)
 
 ShellSpawn = Spawner("Shell")
 ShellSpawn:OnSpawnGroup(function(grp)
     scheduledSpawns[grp:getUnit(1):getName()] = {ShellSpawn, 600}
+	BladderPos.InitOnGroup(grp, 165) -- Init against cloud base at 165m/s (320 knots)
 end)
 
 OverlordSpawn = Spawner("AWACS Overlord")
