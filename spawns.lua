@@ -138,20 +138,33 @@ NorthGeorgiaFARPTransportSpawns = {
 
 -- Tells a tanker (or other aircraft for that matter) to orbit between two points at a set altitude
 
-BladderPos = {}
-BladderPos.hMaxFlightAlt	= 5486	-- meters [18 000']: Don't let the aircraft fly higher than this as Hogs won't be able to refuel. TODO: Make overrideable
-BladderPos.vSpeed			= 160		-- m/s [300kts]: Default speed of the unit
+WeatherPositioning = {}
+WeatherPositioning.hMaxFlightAlt	= 5486	-- meters [18 000']: Don't let the aircraft fly higher than this as Hogs won't be able to refuel. TODO: Make overrideable
+WeatherPositioning.vSpeed			= 160		-- m/s [300kts]: Default speed of the unit
+WeatherPositioning.hClearance		= 305		-- meters [1000']: Default clearance to deconflict
+-- Realistically if we use this to deconflict tankers as well, we'd need 2000' as chicks approach them 1000' low
 
-function BladderPos.InitOnGroup(planeGroup, vSpeed)
+-- Generic altitude deconfliction
+function WeatherPositioning.deconflictAltitude(altitudeIn, deconflictBase, deconflictTop)
+	local hAltitude = altitudeIn
+	if deconflictTop >= (altitudeIn - WeatherPositioning.hClearance) then
+		hAltitude = math.min(deconflictBase - WeatherPositioning.hClearance, altitudeIn)
+	end
+	return hAltitude
+end
+
+function WeatherPositioning.avoidCloudLayer(planeGroup, vSpeed_ms)
 	local planeGroupName	= planeGroup:getName()
-	vSpeed = vSpeed or BladderPos.vSpeed
-	
-	local clouds = env.mission.weather.clouds
+	vSpeed_ms = vSpeed_ms or WeatherPositioning.vSpeed
 	
 	-- Calculate orbit height. Ignore for partial cloud conditions
-	local hOrbit = BladderPos.hMaxFlightAlt
-	if (((clouds.base + clouds.thickness) >= hOrbit - 305) and (clouds.density >= 7)) then
-		hOrbit = math.min(clouds.base - 305, BladderPos.hMaxFlightAlt)
+	local clouds = env.mission.weather.clouds
+	local cloudBase = clouds.base
+	local cloudTop = clouds.base + clouds.thickness
+	local hOrbit = WeatherPositioning.hMaxFlightAlt
+	
+	if clouds.density >= 7 then 
+		hOrbit = WeatherPositioning.deconflictAltitude(hOrbit, cloudBase, cloudTop)
 	end
 	
 	local curRoute = mist.getGroupRoute(planeGroupName, true)
@@ -160,23 +173,23 @@ function BladderPos.InitOnGroup(planeGroup, vSpeed)
 		curRoute[i].alt = hOrbit
 		
 		-- Modify any orbit taskings
-		if #curRoute[i].task ~= nil then
-			if #curRoute[i].task.params ~= nil then
-				if #curRoute[i].task.params.tasks ~= nil then
-					for t = 1, #curRoute[i].task.params.tasks do
-						local curTask = curRoute[i].task.params.tasks[t]
-						if curTask.id == "Orbit" then
-							curTask.params.altitude = hOrbit
-							curTask.params.speed = vSpeed
-						end
-					end
+		if #curRoute[i] ~= nil
+			 and #curRoute[i].task ~= nil
+			 and #curRoute[i].task.params ~= nil
+			 and #curRoute[i].task.params.tasks ~= nil then
+			
+			for _, curTask in pairs(curRoute[i].task.params.tasks) do
+				if curTask.id == "Orbit" then
+					curTask.params.altitude = hOrbit
+					curTask.params.speed = vSpeed_ms
 				end
 			end
 		end
 	end
 	
-	local route = mist.goRoute(planeGroup, curRoute)
+	return mist.goRoute(planeGroup, curRoute)
 end
+
 
 scheduledSpawns = {}
 BlueSecurityForcesGroups = {}
@@ -185,19 +198,19 @@ BlueFarpSupportGroups = {}
 TexacoSpawn = Spawner("Texaco")
 TexacoSpawn:OnSpawnGroup(function(grp)
     scheduledSpawns[grp:getUnit(1):getName()] = {TexacoSpawn, 600}
-	BladderPos.InitOnGroup(grp, 145) -- Init against cloud base at 145m/s (280 knots)
+	WeatherPositioning.avoidCloudLayer(grp, 175) -- Init against cloud base at 175m/s (280 knots)
 end)
 
 ArcoSpawn = Spawner("Arco")
 ArcoSpawn:OnSpawnGroup(function(grp)
     scheduledSpawns[grp:getUnit(1):getName()] = {ArcoSpawn, 600}
-	BladderPos.InitOnGroup(grp, 165) -- Init against cloud base at 165m/s (320 knots)
+	WeatherPositioning.avoidCloudLayer(grp, 195) -- Init against cloud base at 195m/s (380 knots)
 end)
 
 ShellSpawn = Spawner("Shell")
 ShellSpawn:OnSpawnGroup(function(grp)
     scheduledSpawns[grp:getUnit(1):getName()] = {ShellSpawn, 600}
-	BladderPos.InitOnGroup(grp, 165) -- Init against cloud base at 165m/s (320 knots)
+	WeatherPositioning.avoidCloudLayer(grp, 195) -- Init against cloud base at 195m/s (380 knots)
 end)
 
 OverlordSpawn = Spawner("AWACS Overlord")
